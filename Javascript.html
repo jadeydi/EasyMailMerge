@@ -1,0 +1,26 @@
+<script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+$(function() {
+  google.script.run.withSuccessHandler(function(msgs) {
+    var list = $('#select');
+    list.append('<option value="">Select Email Template</option>');
+    for (var i = 0; i < msgs.length; i++) {
+      list.append('<option value="'+msgs[i].msgId+'">' + msgs[i].subject + '</option>');
+    }
+    $(".spinner").hide();
+    $(".form").show();
+    if (msgs.length < 1) {
+      $("label[for='select']").html("You don't have draft in Gmail yet, try to <a href='https://gmail.com' target='_blank'>create</a> a draft email as template.");
+    }
+  }).getMessages();
+
+  $("#send").on("click", function() {
+    var msgId = $('#select option:selected').val();
+    if (msgId === "") {
+      return
+    }
+    google.script.run.sendEmail(msgId, $("input#recipient").prop('checked'));
+    google.script.host.close();
+  });
+})
+</script>

@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <base target="_top">
+    <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
+    <?!= HtmlService.createHtmlOutputFromFile('Stylesheet').getContent(); ?>
+  </head>
+  <body>
+    <div class="spinner">
+      loading...
+    </div>
+    <div class="form">
+      <div class="block form-group">
+        <label for="select" id="select-label">Choose gmail drafts as template.</label>
+        <select id="select">
+        </select>
+      </div>
+      <div class="block">
+        <input type="checkbox" id="recipient" checked>
+        <label for="checkbox1">With Recipient</label>
+      </div>
+      <div class="block">
+        <button class="action" id="send">Send</button>
+      </div>
+    </div>
+    <?!= HtmlService.createHtmlOutputFromFile('Javascript').getContent(); ?>
+  </body>
+</html>
